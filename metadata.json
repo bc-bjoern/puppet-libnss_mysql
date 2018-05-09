@@ -1,5 +1,5 @@
 {
-  "name": "puppet-libnss_mysql",
+  "name": "bcbjoern-libnss_mysql",
   "version": "0.1.0",
   "author": "Bjoern Becker",
   "summary": "Managing libnss-mysql",
