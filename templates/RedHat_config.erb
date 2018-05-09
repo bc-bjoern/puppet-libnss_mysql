@@ -1,0 +1,87 @@
+#
+# managed by puppet 
+#
+<% if @getpwnam -%> 
+getpwnam    <%= @getpwnam %>
+<% else -%>
+getpwnam    SELECT username,'x',uid,gid,gecos,homedir,shell \
+            FROM users \
+            WHERE username='%1$s' \
+            LIMIT 1
+<% end -%>
+<% if @getpwuid -%> 
+getpwuid    <%= @getpwuid %> 
+<% else -%>
+getpwuid    SELECT username,'x',uid,gid,gecos,homedir,shell \
+            FROM users \
+            WHERE uid='%1$u' \
+            LIMIT 1
+<% end -%>
+<% if @getspnam -%> 
+getspnam    <%= @getspnam %> 
+<% else -%>
+getspnam    SELECT username,password,lstchg,min,max,warn,inact,expire,flag \
+            FROM users \
+            WHERE username='%1$s' \
+            LIMIT 1
+<% end -%>
+<% if @getpwent -%> 
+getpwent    <%= @getpwent %> 
+<% else -%>
+getpwent    SELECT username,'x',uid,gid,gecos,homedir,shell \
+            FROM users
+<% end -%>
+<% if @getspent -%> 
+getspent    <%= @getspent %> 
+<% else -%>
+getspent    SELECT username,password,lstchg,min,max,warn,inact,expire,flag \
+            FROM users
+<% end -%>
+<% if @getgrnam -%> 
+getgrnam    <%= @getgrnam %> 
+<% else -%>
+getgrnam    SELECT name,password,gid \
+            FROM groups \
+            WHERE name='%1$s' \
+            LIMIT 1
+<% end -%>
+<% if @getgrgid -%> 
+getgrgid    <%= @getgrgid %> 
+<% else -%>
+getgrgid    SELECT name,password,gid \
+            FROM groups \
+            WHERE gid='%1$u' \
+            LIMIT 1
+<% end -%>
+<% if @getgrent -%> 
+getgrent    <%= @getgrent %> 
+<% else -%>
+getgrent    SELECT name,password,gid \
+            FROM groups
+<% end -%>
+<% if @memsbygid -%> 
+memsbygid   <%= @memsbygid %> 
+<% else -%>
+memsbygid   SELECT username \
+            FROM grouplist \
+            WHERE gid='%1$u'
+<% end -%>
+<% if @gidsbymem -%> 
+gidsbymem   <%= @gidsbymem %> 
+<% else -%>
+gidsbymem   SELECT gid \
+            FROM grouplist \
+            WHERE username='%1$s'
+<% end -%>
+
+host        <%= @host %>
+<% if @database -%>
+database    <%= @database %>
+<% end -%>
+<% if @socket -%>
+socket      <%= @socket %>
+<% end -%>
+<% if @port -%>
+port        <%= @port %>
+<% end -%>
+
